@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Fira Code', monospace;
+            background: #243441;
+
+        }
+
+        .search-box {
+            width: fit-content;
+            height: fit-content;
+            position: relative;
+
+        }
+
+        .input-search {
+            height: 50px;
+            width: 50px;
+            border-style: none;
+            padding: 10px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            outline: none;
+            border-radius: 25px;
+            transition: all .5s ease-in-out;
+            background-color: #22a6b3;
+            padding-right: 40px;
+            color: rgb(255, 255, 255);
+
+        }
+
+        .input-search::placeholder {
+            color: rgba(255, 255, 255, .5);
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 100;
+        }
+
+        .btn-search {
+            width: 50px;
+            height: 50px;
+            border-style: none;
+            font-size: 20px;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            border-radius: 50%;
+            position: absolute;
+            right: 0px;
+            color: #ffffff;
+            background-color: transparent;
+            pointer-events: painted;
+
+        }
+
+        .btn-search:focus~.input-search {
+            width: 300px;
+            border-radius: 0px;
+            background-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, .5);
+            transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+        }
+
+        .input-search:focus {
+            width: 300px;
+            border-radius: 0px;
+            background-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, .5);
+            transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+        }
+    </style>
+    <title>Visualizer</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size: 24px;">
+        <a class="navbar-brand" href="about">DSA Visualizer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item " style="border-left: 2px solid white;border-right: 2px solid white;">
+                    <a class="nav-link active" href="/visualizer">Visualizer</a>
+                </li>
+
+                <li class="nav-item " style="border-right: 2px solid white;">
+                    <a class="nav-link" href="/quize">Quize</a>
+                </li>
+                <li class="nav-item " style="border-right: 2px solid white;">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0  btn btn-outline-success">
+                <a href="/logout" style="color:white;">Logout</a>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="container my-3">
+        <h2 class="text-center" style="color: white;box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.4);
+        border-radius: 20px;padding: 20px;">Algorithm and data structure visualizer</h2>
+
+
+        <!-- search button -->
+        <div class="container"
+            style="padding-top: 30px;align-items: center;display: flex;justify-content: center; align-items: center;">
+            <div class="search-box">
+                <button class="btn-search"><i class="fa fa-search"></i></button>
+                <input type="text" class="input-search filter" placeholder="Type to Search...">
+            </div>
+        </div>
+
+        <!--search button end-->
+
+
+        <div class="row" style="margin-left: 200px;margin-top: 50px;">
+            <div class="ocard col-md-4" style="padding:10px; box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.9);"
+                data-string="Stack Visualizer">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/static/img/stackimg.gif" alt="Stack image"
+                        style="height: 250px;width: 285px;border:5px solid black;">
+                    <div class="card-body">
+                        <h5 class="card-title">Stack Visualizer</h5>
+                        <a href="#" class="btn btn-primary">Click to visualize</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ocard col-md-4"
+                style="margin-left: 100px;padding:10px;box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.9);"
+                data-string="Queue Visualizer">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/static/img/queueimg.gif" alt="Queue image"
+                        style="height: 250px;width: 285px;border:5px solid black;">
+                    <div class="card-body">
+                        <h5 class="card-title">Queue Visualizer</h5>
+
+                        <a href="#" class="btn btn-primary">Click to visualize</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-left: 200px;margin-top: 20px;">
+            <div class="ocard col-md-4" style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.9);padding:10px;"
+                data-string="Sort-Algorithm Visualizer">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/static/img/sortalgoimg.gif" alt="Sort-Algo image"
+                        style="height: 250px;width: 285px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sort-Algorithm Visualizer</h5>
+
+                        <a href="/sortalgo" class="btn btn-primary">Click to visualize</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ocard col-md-4"
+                style="margin-left: 100px;box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.9);padding:10px;"
+                data-string="Search-Algorithm Visualizer">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/static/img/searchalgoimg.gif" alt="Search-Algo image"
+                        style="height: 250px;width: 285px;border:5px solid black;">
+                    <div class="card-body">
+                        <h5 class="card-title">Search-Algorithm Visualizer</h5>
+
+                        <a href="/searchalgo" class="btn btn-primary">Click to visualize</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+    <script>
+        $(".filter").on("keyup", function () {
+            var input = $(this).val().toUpperCase();
+            $(".ocard").each(function () {
+                if ($(this).data("string").toUpperCase().indexOf(input) < 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+
+                }
+            })
+        });
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
