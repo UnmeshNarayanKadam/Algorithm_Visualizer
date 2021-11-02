@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Sorting visualizer</title>
+</head>
+
+<body style="background-color: #243441;font-family: 'Fira Code', monospace;">
+    <h1 class="title" style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;padding: 30px;"><a
+            class="title" href="">Sorting visualizer</a></h1><br>
+    <div style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;" class="navbar" id="navbar">
+        <button type="button" class="btn btn-outline-primary"><a id="random" onclick="RenderScreen()">Generate
+                array</a></button>
+
+        <span class="options">
+            <select name="select sort algorithm" id="menu" class="algo-menu btn btn-outline-primary">
+                <option value="0">sort algorithm</option>
+                <option value="2">Selection Sort</option>
+                <option value="1">Bubble Sort</option>
+                <option value="3">Insertion Sort</option>
+                <!--            <option value="4">Merge Sort</option>
+                <option value="5">Quick Sort</option>    -->
+            </select>
+        </span>
+
+        <span class="options">
+            <select name="select array size" id="menu" class="size-menu btn btn-outline-primary">
+                <option value="0">array size</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="90">90</option>
+                <option value="100">100</option>
+            </select>
+        </span>
+        <span class="options">
+            <select name="speed of visualization" id="menu" class="speed-menu btn btn-outline-primary">
+                <option value="0">speed</option>
+                <option value="0.5">0.50x</option>
+                <option value="0.75">0.75x</option>
+                <option value="1">1.00x</option>
+                <option value="2">2.00x</option>
+                <option value="4">4.00x</option>
+            </select>
+        </span>
+        <button type="button" class="btn btn-outline-primary"><a id="random" onclick="RenderScreen()"></a><a
+                class="start" style="padding-right: 40px;">SORT</a></button>
+        <a class="icon"><i class="fa fa-bars"></i></a>
+    </div>
+    <br /><br />
+    <div class="center">
+        <div class="frame" id="box">
+            <div class="array"></div>
+        </div>
+    </div>
+
+    <p id="demo" style="color: white;"></p>
+
+
+
+    <script src="app.js"></script>
+    <script src="helper.js"></script>
+    <script src="sort-algorithms.js"></script>
+
+
+
+    <!-- edited -->
+    <br><br>
+
+    <div class="row mx-auto"
+        style="color: white; padding: 20px; box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;">
+        <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="row ml-auto mr-auto">
+                <span class="comment">---------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">| SELECTION SORT |</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">---------------------</span>
+            </div>
+            <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                    <span><span class="op">for</span>(i = 0 to length(list)-1)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                    <span>&emsp;&emsp;min = i</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                    <span>&emsp;&emsp;<span class="op">for</span>(j = i+1 to
+                        length(list))</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                    <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(list[j]
+                        < list[min])</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                    <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;min = j</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                    <span>&emsp;&emsp;<span class="op">if</span>(min != i)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                    <span>&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[i], list[min])</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+            <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                    <span class="comment">---------------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">| SHORT EXPLANATION |</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">---------------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">1. Set the first unsorted element as the minimum.</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">2. Iterate through the rest of the list to find the true
+                        minimum.</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">3. Swap the minimum with the first unsorted element to
+                        build the sorted sublist.</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">2. Repeat steps 1 to 3 until the whole list is sorted</span>
+                </div>
+
+                <br>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">Time Complexity<br>
+                        Best O(n^2)<br>
+                        Worst O(n^2)<br>
+                        Average O^(n2)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+    <!-- edited end -->
+
+
+    <!-- edited start -->
+
+
+    <div class="row mx-auto"
+        style="color: white; padding : 20px; box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;">
+        <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="row ml-auto mr-auto">
+                <span class="comment">------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto">
+                <span class="comment w-100">| BUBBLE SORT |</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment w-100">------------------</span>
+            </div>
+            <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                    <span><span class="op">while</span>(swapped)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                    <span>&emsp;&emsp;swapped = <span class="var">false</span></span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                    <span>&emsp;&emsp;<span class="op">for</span> x = 0 to
+                        length(list)-1</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                    <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x]
+                        > list[x+1]</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                    <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                    <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped =
+                        <span class="var">true</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+            <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                    <span class="comment">-----------------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto">
+                    <span class="comment">| SHORT EXPLANATION |</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">-----------------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">1. Starting at index 0, compare the current element with
+                        the next element</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        - If the current element is greater than the next element,
+                        swap them</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        - If the current element is less than the next element, move
+                        to the next element</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">2. Repeat Step 1 until the list is sorted</span>
+                </div><br>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">Time Complexity<br>
+                        Best O(n2)<br>
+                        Worst O(n^2)<br>
+                        Average O^(n2)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+
+
+
+    <!-- edited end -->
+
+
+    <!-- edited start -->
+
+    <div class="row mx-auto"
+        style="color: white; padding: 20px; box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;">
+        <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="row ml-auto mr-auto">
+                <span class="comment">---------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto">
+                <span class="comment w-100">| INSERTION SORT |</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment w-100">---------------------</span>
+            </div>
+            <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                    <span>
+                        <span class="op">for </span> i = 0 to length(list)
+                    </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                    <span>&emsp;&emsp;j = i</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                    <span>&emsp;&emsp;value = list[i]</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                    <span>
+                        &emsp;&emsp;<span class="op">while</span> j > 0 && list[j-1]
+                        > value
+                    </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                    <span>&emsp;&emsp;&emsp;&emsp; list[j] = list[j-1]</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                    <span>&emsp;&emsp;&emsp;&emsp; j--</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                    <span>list[j] = value</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+            <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                    <span class="comment">-----------------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto">
+                    <span class="comment w-100">| SHORT EXPLANATION |</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment w-100">-----------------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        1. Get the element you want to move to its position
+                    </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        2. Find its position by comparing it to the values left of
+                        it
+                    </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        3. Remove it from the list and let the other elements move
+                        up
+                    </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        4. Insert the element at its position in the sorted sublist
+                    </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">
+                        5. Repeat 1 - 4 until the list is sorted
+                    </span>
+                </div><br>
+                <div class="row ml-auto mr-auto mt-1">
+                    <span class="comment">Time Complexity<br>
+                        Best O(n2)<br>
+                        Worst O(n^2)<br>
+                        Average O^(n2)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+    <!-- edited end -->
+
+
+</body>
+
+</html>

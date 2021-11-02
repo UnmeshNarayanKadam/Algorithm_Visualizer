@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stack</title>
+
+    
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Fira Code', monospace;
+            color: #333;
+            background: #243441;
+            padding-top: 10px;
+            padding-bottom: 500px;
+            box-sizing: border-box;
+        }
+
+        button {
+
+            size: 50px;
+            position: relative;
+            height: 44px;
+            cursor: pointer;
+            white-space: nowrap;
+            color: rgb(10, 255, 239);
+            border: none;
+            font-size: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: auto;
+            padding: 0 1rem;
+            border-radius: 20px;
+        }
+
+        .shadow {
+            box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.4);
+            /* -11px -11px 22px hsla(0, 0%, 100%, 0.1); */
+            border-radius: 20px;
+        }
+
+
+
+        .search-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-container {
+            width: 18%;
+            margin: auto;
+            height: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+
+            background-color: #243441;
+        }
+
+        /* search options section */
+        .search-options-wrapper {
+
+
+            /* border-bottom: 1px solid hsla(0, 0%, 100%, 0.4); */
+            margin: 1rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .align-items-end {
+            align-items: flex-end;
+        }
+
+        .d-none {
+            display: none;
+        }
+
+        /*
+  .action-button {
+
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 11px 35px;
+    background: rgb(108, 218, 167);
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background-color .3s ease;
+    outline: none;
+  }
+*/
+
+
+        .container {
+            padding: 10px;
+        }
+
+        .heading {
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: rgb(10, 255, 239);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /*
+  .create-stack button {
+    margin: 0 auto;
+    display: block;
+    padding: 10px 25px;
+    background: #f5f6f7;
+    font-weight: 600;
+    font-size: 16px;
+    color: green;
+    margin-bottom: 50px;
+  }
+  
+  .create-stack button.inactive {
+    pointer-events: none;
+    background: #a8d0f8;
+  }
+  
+  .create-stack button:hover {  }
+  
+*/
+
+        /* output box*/
+        .stack-items {
+            width: 50%;
+            padding: 30px;
+            box-sizing: border-box;
+            background: rgb(240, 240, 240);
+            margin: 0 auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .stack-item {
+            text-align: center;
+            box-sizing: border-box;
+            background: #fff;
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(10, 10, 10, .1);
+            color: rgb(92, 92, 92);
+            margin-top: 20px;
+        }
+
+        .stack-item:first-child {
+            margin-top: 0;
+        }
+
+        /* input box*/
+
+
+
+        .stack-add-block input {
+            margin-left: 25%;
+            width: 30%;
+            box-sizing: border-box;
+            padding: 11px 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(10, 10, 10, .1);
+            outline: none;
+            transition: all .3s ease;
+
+
+        }
+
+        .stack-add-block button {
+            margin-right: 25%;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+
+        .stack-add-block {
+            margin-bottom: 40px;
+        }
+
+        .no-nodes {
+            font-size: 20px;
+            font-weight: 600;
+            color: rgb(196, 196, 196);
+        }
+
+        .output {
+            margin-top: 50px;
+            background-color: #243441;
+            padding: 15px;
+            box-sizing: border-box;
+            box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.9);
+            color: #fafafa;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            left: 0;
+            overflow-y: scroll;
+
+        }
+
+        .output-item {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="heading"
+                style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);padding: 20px;border-radius: 20px;">
+                Stack Visualizer
+            </div>
+            <div class="desc"
+                style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;font-size: large; padding: 40px;">
+                Is a conceptual structure consisting of a set of
+                homogeneous elements and is based on the principle of last in first out
+                (LIFO). It is a commonly used abstract data type with two major operations,
+                namely push and pop. Push and pop are carried out on the topmost element,
+                which is the item most recently added to the stack. The push operation adds
+                an element to the stack while the pop operation removes an element from the
+                top position. The stack concept is used in programming and memory organization
+                in computers.
+            </div>
+            <div class="create-stack">
+                <button class="action-button box-container search btn shadow search-options-wrapper search-window"
+                    id="create_stack">Create Stack</button>
+            </div><br>
+            <div
+                style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;font-size: large; padding: 40px;">
+                <div class="stack d-none" id="stack">
+                    <div class="stack-controls">
+                        <div class="stack-add-block d-flex justify-content-between">
+                            <input type="text" class="stack-add" id="node_value"
+                                placeholder="Add something to stack"><br>
+                            <button
+                                class="stack-add-btn action-button box-container search btn shadow search-options-wrapper search-window"
+                                id="push">Push()</button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="info">
+                                <b>Stack Length: </b>
+                                <b id="stack_length"></b>
+                            </div>
+                            <button
+                                class="pop action-button box-container search btn shadow search-options-wrapper search-window"
+                                id="pop" style="margin-left: 32%;margin-right: 40%;">Pop()</button>
+                        </div>
+                    </div>
+                    <div class="stack-items" id="stack_items">
+                        <div class="no-nodes" id="for_empty">Empty</div>
+                    </div>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+    </section>
+    <script>
+        "use strict";
+
+        class StackNode {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+        };
+
+        class Stack {
+            constructor() {
+                this.root = null;
+                this.stackLength = 0;
+            }
+
+            len = () => this.stackLength;
+
+            isEmpty = () => this.stackLength === 0;
+
+            push = (node) => {
+                let oldRoot = this.root;
+                this.root = new StackNode(node);
+                this.root.next = oldRoot;
+                this.stackLength++;
+            }
+
+            pop = () => {
+                if (this.isEmpty()) return null;
+
+                let oldRoot = this.root;
+                this.root = oldRoot.next;
+                this.stackLength--;
+                return oldRoot.value;
+            }
+        };
+
+
+
+        /* User Visualization */
+
+
+        let
+            createStack = document.getElementById('create_stack'),
+            push = document.getElementById('push'),
+            pop = document.getElementById('pop'),
+            stackLength = document.getElementById('stack_length'),
+            stackBlock = document.getElementById('stack'),
+            stackItems = document.getElementById('stack_items'),
+            outputBlock = document.getElementById('output'),
+            empty = document.getElementById('for_empty'),
+            outputMsgs = '',
+
+            stack = undefined;
+
+        createStack.onclick = (e) => {
+            if (stackBlock !== null) {
+                stack = new Stack();
+                stackBlock.classList.remove('d-none');
+                stackLength.innerHTML = stack.len();
+                e.target.classList.add('inactive');
+                output('> Stack has been created');
+
+                stackInfo(stack);
+            }
+        };
+
+        push.onclick = () => {
+            let nodeValue = String(document.getElementById('node_value').value);
+
+            if (nodeValue.length === 0 || !nodeValue.trim()) {
+                output('> Incorrect value');
+            } else {
+                stack.push(nodeValue);
+
+                if (!stack.isEmpty()) empty.classList.add('d-none');
+
+                let node = document.createElement('div');
+                node.classList.add('stack-item');
+                node.innerHTML = `<span>${nodeValue}</span>`;
+                stackItems.insertBefore(node, stackItems.firstChild);
+
+                output(`> "${nodeValue}" value has been successfully added to the Stack`);
+                stackLength.innerHTML = stack.len();
+
+                document.getElementById('node_value').value = '';
+                document.getElementById('node_value').focus();
+
+                stackInfo(stack);
+            }
+        };
+
+        pop.onclick = () => {
+            if (stack.isEmpty()) {
+                output('> Nothing to delete. Stack is empty');
+            } else {
+                let
+                    poppedNode = stack.pop(),
+                    targetNode = document.getElementsByClassName('stack-item')[0];
+
+                targetNode.parentNode.removeChild(targetNode);
+
+                output(`> "${poppedNode}" has been successfully removed from the Stack`);
+                stackLength.innerHTML = stack.len();
+
+                if (stack.isEmpty()) empty.classList.remove('d-none');
+
+                stackInfo(stack);
+            }
+        };
+
+        const output = msg => {
+            outputMsgs = `<div class="output-item">${msg}</div>` + outputMsgs;
+            outputBlock.innerHTML = outputMsgs;
+        };
+
+        const stackInfo = (stack) => {
+            console.log(stack);
+            console.log("Is Empty: " + stack.isEmpty());
+            console.log("Length: " + stack.len());
+        };
+    </script>
+
+
+
+</body>
+
+</html>

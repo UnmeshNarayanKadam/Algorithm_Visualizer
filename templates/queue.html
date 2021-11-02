@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 10px;
+            padding: 10px;
+            font-family: 'Fira Code', monospace;
+            color: #333;
+            background: #243441;
+            padding-top: 10px;
+            padding-bottom: 500px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .heading {
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: rgb(10, 255, 239);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .stack-add-block {
+
+            width: 30%;
+            box-sizing: border-box;
+            padding: 11px 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(10, 10, 10, .1);
+            outline: none;
+            transition: all .3s ease;
+            margin-bottom: 40px;
+
+        }
+
+        .stack-item {
+            text-align: center;
+            box-sizing: border-box;
+            background: #fff;
+            width: 35%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(10, 10, 10, .1);
+            color: rgb(92, 92, 92);
+            margin-top: 20px;
+        }
+
+
+
+
+
+        #buttonAdd {
+            background-color: #FFC107;
+            width: 200px;
+            text-align: center;
+            padding: 5px 5px 5px 5px;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            font-size: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            cursor: pointer
+        }
+
+        #buttonRemove {
+            background-color: #FBC107;
+            width: 200px;
+            text-align: center;
+            padding: 5px 5px 5px 5px;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            font-size: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heading"
+        style="color: white; box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);padding: 20px;border-radius: 20px;">
+        Queue
+    </div>
+    <div class="desc"
+        style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;font-size: large; padding: 40px;">
+        A Queue is a linear structure which follows a particular order in which the operations are performed. The order
+        is
+        First In First Out (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer
+        that
+        came first is served first. The difference between stacks and queues is in removing. In a stack we remove the
+        item the
+        most recently added; in a queue, we remove the item the least recently added.
+    </div>
+
+
+    <div id="menuCointainer" style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px; padding: 40px;">
+        <div id="addCointainer">
+            <input type="text" class="stack-add stack-add-block stack-item" id="valueAdd"
+                placeholder="Add something to stack"><br>
+            <button id="buttonAdd" class="enqueue">Enqueue</button>
+            <button id="buttonRemove" class="dequeue">Dequeue</button>
+        </div>
+    </div>
+    <script>
+        var ns = "http://www.w3.org/2000/svg";
+
+        var svg = document.createElementNS(ns, "svg");
+        svg.setAttributeNS(null, "width", 500);
+        svg.setAttributeNS(null, "height", 500);
+        document.body.appendChild(svg);
+
+        // Stack class
+        var Stack = function () {
+            this.items = [];
+            this.svgElement = document.createElementNS(ns, "g");
+            this.svgItems = [];
+        }
+
+        // define the 'add' method in Stack class
+        Stack.prototype.add = function (item) {
+            this.items.push(item);
+
+            var nextY = 500 - this.size() * 40;
+
+            var g = document.createElementNS(ns, "g");
+            this.svgElement.appendChild(g);
+
+            var r = document.createElementNS(ns, "rect");
+            r.setAttributeNS(null, "x", 10);
+            r.setAttributeNS(null, "y", nextY);
+            r.setAttributeNS(null, "width", 100);
+            r.setAttributeNS(null, "height", 40);
+            var r1 = 200 + Math.round(Math.random() * 55);
+            var g1 = 200 + Math.round(Math.random() * 55);
+            var b1 = 200 + Math.round(Math.random() * 55);
+            var randomColor = "rgb(" + r1 + ", " + g1 + ", " + b1 + ")";
+            r.setAttributeNS(null, "fill", randomColor);
+            r.setAttributeNS(null, "stroke", "black");
+            r.setAttributeNS(null, "stroke-width", "2");
+            g.appendChild(r);
+
+            var text = document.createElementNS(ns, "text");
+            text.setAttributeNS(null, "x", 60);
+            text.setAttributeNS(null, "y", nextY + 30);
+            text.setAttributeNS(null, "text-anchor", "middle");
+            text.innerHTML = item;
+            g.appendChild(text);
+
+            this.svgItems.push(g);
+        }
+
+        Stack.prototype.pop = function () {
+            var svgItem = this.svgItems[this.svgItems.length - 1];
+            this.svgElement.removeChild(svgItem);
+            this.svgItems.pop();
+            return this.items.pop();
+        }
+
+        Stack.prototype.isEmpty = function () {
+            return this.items.length == 0;
+        }
+
+        Stack.prototype.size = function () {
+            return this.items.length;
+        }
+
+        Stack.prototype.pick = function () {
+            return this.items[this.items.length - 1];
+        }
+
+
+        var Queue = function () {
+            this.items = new Stack();
+            this.temp = new Stack();
+
+            this.svgElement = document.createElementNS(ns, "g");
+            this.svgElement.appendChild(this.items.svgElement);
+            this.svgElement.appendChild(this.temp.svgElement);
+            this.temp.svgElement.setAttributeNS(null, "transform", "translate(200 0)");
+        }
+
+        Queue.prototype.enqueue = function (item) {
+            this.items.add(item);
+        }
+
+        Queue.prototype.dequeue = function () {
+            if (this.temp.isEmpty()) {
+                var len = this.items.size();
+                for (var i = 0; i < len; i++) {
+                    this.temp.add(this.items.pop());
+                }
+                return this.temp.pop();
+            } else {
+                return this.temp.pop();
+            }
+        }
+
+        var queue = new Queue();
+        svg.appendChild(queue.svgElement);
+
+        var buttonAdd = document.getElementById("buttonAdd")
+        var valueAdd = document.getElementById("valueAdd")
+        var buttonRemove = document.getElementById("buttonRemove")
+
+        buttonAdd.onclick = function (event) {
+            queue.enqueue(valueAdd.value)
+        }
+        buttonRemove.onclick = function (event) { queue.dequeue() }
+
+        queue.enqueue(10);
+        queue.enqueue(1);
+        queue.enqueue(12);
+        queue.enqueue(34);
+        queue.enqueue(90);
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(340);
+        queue.enqueue(90);
+        queue.dequeue();
+        queue.enqueue(12);
+        queue.dequeue();
+        queue.dequeue();
+        //queue.dequeue();
+    </script>
+
+
+    <!--
+    <div id="menuCointainer" style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px; padding: 40px;">
+        <div id="addCointainer">
+            <input id="valueAdd" type="text">
+            <div id="buttonAdd">ADD ELEMENT</div>
+        </div>
+        <div id="buttonRemove">REMOVE ELEMENT</div>
+    </div>
+    <script src="main.js" ></script>
+-->
+
+</body>
+
+</html>

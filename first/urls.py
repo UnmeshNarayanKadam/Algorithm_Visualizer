@@ -12,5 +12,7 @@ urlpatterns = [
     path('searchalgo', views.searchalgo, name='searchalgo'),
     path('sortalgo', views.sortalgo, name='sortalgo'),
     path('visualizer', views.visualizer, name='visualizer'),
-    path('quize', views.quize, name='quize')
+    path('quize', views.quize, name='quize'),
+    path('queue', views.queue, name='queue'),
+    path('stack', views.stack, name='stack')
 ]

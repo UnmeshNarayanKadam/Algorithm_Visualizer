@@ -2,557 +2,391 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        html,
-        body {
-            top: 0;
-            margin: 0;
-            width: auto;
-            min-height: 95vh;
-            font-family: 'Fira Code', monospace;
-            display: flex;
-            flex-direction: column;
-        }
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
+    <title>Sorting - AlgoVis.io</title>
+    <meta content="AlgoVis is an online algorithm visualization tool." name="description" />
+    <meta content="algorithm visualization tool online" name="keywords" />
 
-        .link {
-            text-decoration: none;
-            font-weight: bold;
-            color: #FF5252;
-        }
+    <!-- Favicons -->
+    <link href="\static\sortalgovis\assets/img/favicon.png" rel="icon" />
+    <link href="\static\sortalgovis\assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-        #menu,
-        #random,
-        #start {
-            margin-right: 10px;
-            cursor: pointer;
-        }
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet" />
 
-        .title {
-            text-decoration: none;
-            text-align: center;
-            font-size: 40px;
-            color: white;
-        }
-
-        .center {
-            margin: 0 auto;
-            border: 2px solid rgb(211, 102, 102);
-            width: 900px;
-            height: 450px;
-            max-width: 411px;
-            max-height: 731px;
-        }
-
-        #box {
-            height: 450px;
-        }
-
-        .array {
-            display: flex;
-            align-items: flex-start;
-            min-height: 80vh;
-            height: 40vh;
-            padding: 1rem;
-            flex-direction: row;
-        }
-
-        .cell {
-            display: flex;
-            align-items: flex-start;
-            flex: 0.5;
-            width: 0.000001%;
-            margin: 1px;
-            background-color: #9e9d9d;
-            resize: horizontal;
-            position: relative;
-            transition: all .4s ease-in;
-        }
-
-        .cell.done {
-            background-color: #9CEC5B;
-            border-color: #9CEC5B;
-            color: white;
-            transition: all .4s ease-out;
-        }
-
-        .cell.visited {
-            border-color: #6184D8;
-            background-color: #6184D8;
-            color: white;
-            transition: .5s;
-        }
-
-        .cell.current {
-            border-color: #50C5B7;
-            background-color: #50C5B7;
-            color: white;
-            transition: all .4s ease-out;
-        }
-
-        .cell.min {
-            background-color: #FF1493;
-            border-color: #FF1493;
-            color: white;
-            transition: all .4s ease-out;
-        }
-
-        .navbar {
-            top: 0;
-            left: 0;
-            width: 100%;
-            font-size: 16px;
-            min-height: 60px;
-            overflow: hidden;
-            text-align: center;
-            background-color: #243441;
-            transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-
-
-
-        .navbar .options {
-            text-align: center;
-        }
-
-        .navbar a {
-            outline: none;
-            cursor: pointer;
-            color: #6b7070;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .navbar a {
-            outline: none;
-            cursor: pointer;
-            color: #ccd6f6;
-            font-weight: bold;
-            padding: 13px 13px;
-            text-decoration: none;
-        }
-
-        .navbar>a:hover {
-            color: #6b6d6a;
-        }
-
-        .navbar>.icon {
-            display: none;
-        }
-
-        @media screen and (max-width: 900px) {
-
-            .navbar a,
-            .navbar .options {
-                display: none;
-            }
-
-            .navbar a.icon {
-                float: right;
-                display: block;
-            }
-
-            .navbar.responsive {
-                position: relative;
-            }
-
-            .navbar.responsive a.icon {
-                position: absolute;
-                right: 0;
-                top: 0;
-            }
-
-            .navbar.responsive a,
-            .navbar.responsive .options {
-                float: none;
-                display: block;
-                text-align: center;
-            }
-        }
-    </style>
-    <title>Sorting visualizer</title>
+    <!-- Vendor CSS Files -->
+    <link href="\static\sortalgovis\assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="\static\sortalgovis\assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="\static\sortalgovis\assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="\static\sortalgovis\assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link href="\static\sortalgovis\assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="\static\sortalgovis\assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="\static\sortalgovis\assets/css/main.css" />
+    <!-- Template Main CSS File -->
+    <link href="\static\sortalgovis\assets/css/style.css" rel="stylesheet" />
 </head>
 
-<body style="background-color: #243441;">
-    <h1 class="title" style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;padding: 10px;"><a
-            class="title" href="">Sorting visualizer</a></h1><br>
-    <div style="box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;" class="navbar" id="navbar">
-        <button type="button" class="btn btn-outline-success"><a id="random" onclick="RenderScreen()">Generate
-                array</a></button>
+<body style="padding: 10px;">
 
-        <span class="options">
-            <select name="select sort algorithm" id="menu" class="algo-menu btn btn-outline-success">
-                <option value="0">sort algorithm</option>
-                <option value="2">Selection Sort</option>
-                <option value="1">Bubble Sort</option>
-                <option value="3">Insertion Sort</option>
-                <option value="4">Merge Sort</option>
-                <option value="5">Quick Sort</option>
-            </select>
-        </span>
+    <main id="main">
 
-        <span class="options">
-            <select name="select array size" id="menu" class="size-menu btn btn-outline-success">
-                <option value="0">array size</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
-                <option value="60">60</option>
-                <option value="70">70</option>
-                <option value="80">80</option>
-                <option value="90">90</option>
-                <option value="100">100</option>
-            </select>
-        </span>
-        <span class="options">
-            <select name="speed of visualization" id="menu" class="speed-menu btn btn-outline-success">
-                <option value="0">speed</option>
-                <option value="0.5">0.50x</option>
-                <option value="0.75">0.75x</option>
-                <option value="1">1.00x</option>
-                <option value="2">2.00x</option>
-                <option value="4">4.00x</option>
-            </select>
-        </span>
-        <button type="button" class="btn btn-outline-success"><a id="random" onclick="RenderScreen()"></a><a
-                class="start" style="padding-right: 40px;">SORT</a></button>
-        <a class="icon"><i class="fa fa-bars"></i></a>
-    </div>
-    <br /><br />
-    <div class="center">
-        <div class="frame" id="box">
-            <div class="array"></div>
-        </div>
-    </div>
+        <h1 class="title"
+            style="text-align: center; box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.3);border-radius: 20px;padding: 20px;margin-top: 20px;">
+            Sorting Visualizer</h1><br>
 
-<!-- app.js  -->
+        <section class="inner-page">
+            <section id="overview" class="pt-0">
+                <div class="container">
+                    <h3 class="highlighted-text">Overview</h3>
+                    <div class="mb-4 explanation ml-2 mr-2" style="font-size: large">
+                        A sorting algorithm is an algorithm that puts elements of a list
+                        in a certain order (thus sorting the list). The most frequently
+                        used orders are numerical order for lists of numbers and
+                        lexicographical order for lists of strings.<br /><br />
+                        To put it more formally, the output generally has to fulfill two
+                        conditions:
+                        <ul>
+                            <li>The output is in nondecreasing order</li>
+                            <li>The output is a permutation of the input</li>
+                        </ul>
+                        Or, to put it simply, when running a sorting algorithm we expect
+                        an output that contains all the elements originally present in the
+                        input arranged in such a way that the smallest element (according
+                        to the operation used to sort the list) is in the leftmost place,
+                        with every element following being either bigger or equal to its
+                        predecessor.<br /><br />
+                        Sorting algorithms can generally be classified into three distinct
+                        categories:
+                        <ul>
+                            <li>Comparison sorts</li>
+                            <li>Non-comparison sorts</li>
+                            <li>Others</li>
+                        </ul>
+                        On this page you can find many implementations for every category.
+                        If you need a visualization for a certain algorithm, just use the
+                        search function to find it quickly.
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row mt-5 highlighted-text">
+                        <div class="col-sm-12 text-center">
+                            <h2>Search</h2>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-sm-12 col-md-10 col-lg-8">
+                            <form class="card card-sm border-red">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="bx bx-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input id="search" class="form-control form-control-borderless" type="search"
+                                            placeholder="Search names or keywords" />
+                                    </div>
+                                    <div class="anchor w-100" id="comparison"></div>
+                                    <!--end of col-->
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPARISON SORTS -->
+            <section id="comparison-sorts" class="pt-0">
+                <div class="container-fluid w-100">
+                    <!-- Gradient divider -->
+                    <hr data-content="Comparison Sorts" class="hr-text mb-2 cd-hide" />
+                    <div class="w-100 p-2 row mt-3 mb-3 cd-hide">
+                        <div class="col-sm-1 col-md-1 col-lg-3"></div>
+                        <div class="explanation col-sm-10 col-md-10 col-lg-6">
+                            A comparison sort is a type of sorting algorithm that only reads
+                            the list elements through a single abstract comparison operation
+                            (often a "less than or equal to" operator or a three-way
+                            comparison) that determines which of two elements should occur
+                            first in the final sorted list.
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-3"></div>
+                    </div>
+                    <div class="card-deck mb-4 cd-hide">
+                        <div id="bubblesort" class="algorithm shadow-highlight card">
+                            <a href="\static\sortalgovis\bubblesort.html" class="unstyled-link">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bubblesort</h5>
+                                    <h6 class="card-subtitle">Comparison sort</h6>
+                                    <p class="card-text">
+                                        Bubblesort is a simple sorting algorithm that repeatedly
+                                        steps through the list, compares adjacent elements and
+                                        swaps them if they are in the wrong order. The pass
+                                        through the list is repeated until the list is sorted.
+                                        <br /><br />
+                                        <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                                        <b>Average-case:</b> <i>O(n²)</i> <br />
+                                        <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-deck mb-4 cd-hide">
+                        <div id="insertionsort" class="algorithm shadow-highlight card">
+                            <a href="\static\sortalgovis\insertionsort.html" class="unstyled-link">
+                                <div class="card-body">
+                                    <h5 class="card-title">Insertionsort</h5>
+                                    <h6 class="card-subtitle">Comparison sort</h6>
+                                    <p class="card-text">
+                                        Insertion sort is a simple sorting algorithm that builds
+                                        the final sorted list one item at a time by inserting each
+                                        element at its correct position. <br /><br />
+                                        <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                                        <b>Average-case:</b> <i>O(n²)</i> <br />
+                                        <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- TODO
+                    <div id="mergesort" class="algorithm shadow-highlight card" >
+                    <a href="mergesort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Mergesort</h5>
+                            <h6 class="card-subtitle">Comparison sort</h6>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>-->
+
+                        <div id="quicksort" class="algorithm shadow-highlight card">
+                            <a href="\static\sortalgovis\quicksort.html" class="unstyled-link">
+                                <div class="card-body">
+                                    <h5 class="card-title">Quicksort</h5>
+                                    <h6 class="card-subtitle">Comparison sort</h6>
+                                    <p class="card-text">
+                                        Quicksort is a divide-and-conquer algorithm. It works by
+                                        selecting a 'pivot' element from the array and
+                                        partitioning the other elements into two sub-arrays,
+                                        according to whether they are less than or greater than
+                                        the pivot. The sub-arrays are then sorted recursively.
+                                        This can be done in-place, requiring small additional
+                                        amounts of memory to perform the sorting.
+                                        <br />
+                                        <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br />
+                                        <b>Average-case:</b> <i>O(n log n)</i> <br />
+                                        <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div id="selectionsort" class="algorithm shadow-highlight card">
+                            <a href="\static\sortalgovis\selectionsort.html" class="unstyled-link">
+                                <div class="card-body">
+                                    <h5 class="card-title">Selection sort</h5>
+                                    <h6 class="card-subtitle">Comparison sort</h6>
+                                    <p class="card-text">
+                                        Selection sort divides the input list into two parts: a
+                                        sorted sublist of items which is built up from left to
+                                        right and an unsorted sublist. The algorithm repeatedly
+                                        iterates over the unsorted sublist, finds the smallest
+                                        element in that sublist, swaps it with the leftmost
+                                        unsorted element, and moves the sublist boundaries one
+                                        element to the right. <br /><br />
+                                        <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                                        <b>Average-case:</b> <i>O(n²)</i> <br />
+                                        <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="results"></div>
+            </section>
+
+            <!-- NON-COMPARISON-SORTS -->
+            <section id="non-comparison-sorts" class="pt-0">
+                <div class="container-fluid w-100">
+                    <!-- Gradient divider -->
+                    <hr data-content="Non-Comparison Sorts" class="hr-text cd-hide" />
+                    <div class="w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
+                        <div class="col-sm-12">
+                            Non-Comparison Sorts are sorting algorithms which sort a given
+                            input without comparing the elements, rather making certain
+                            assumptions about the data. Examples for non-comparison sorting
+                            algorithms are Counting sort which sorts using key-value and
+                            Bucket Sort which examines bits of keys.
+                        </div>
+                    </div>
+                    <div class="card-deck mb-4 cd-hide">
+                        <div id="countingsort" class="algorithm shadow-highlight card">
+                            <a href="\static\sortalgovis\countingsort.html" class="unstyled-link">
+                                <div class="card-body">
+                                    <h5 class="card-title">Counting sort</h5>
+                                    <h6 class="card-subtitle">Non-Comparison sort</h6>
+                                    <p class="card-text">
+                                        Counting sort is an algorithm for sorting a collection of
+                                        objects according to keys that are small integers. It
+                                        operates by counting the number of objects that have each
+                                        distinct key value, and using arithmetic on those counts
+                                        to determine the positions of each key value in the output
+                                        sequence. <br /><br />
+                                        <b>Time complexity:</b>&emsp;&emsp;<i> O(n+k)</i><br />
+                                        with n being the number of elements and k being the number
+                                        of keys.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div id="radixsort" class="algorithm shadow-highlight card">
+                            <a href="\static\sortalgovis\radixsort.html" class="unstyled-link">
+                                <div class="card-body">
+                                    <h5 class="card-title">Radix sort</h5>
+                                    <h6 class="card-subtitle">Non-Comparison sort</h6>
+                                    <p class="card-text">
+                                        Radix sort avoids comparison by creating and distributing
+                                        elements into buckets according to their radix. For
+                                        elements with more than one significant digit, this
+                                        bucketing process is repeated for each digit, while
+                                        preserving the ordering of the prior step, until all
+                                        digits have been considered. <br /><br />
+                                        <b>Time complexity:</b>&emsp;&emsp;<i> O(nw)</i><br />
+                                        with n being the number of elements and w being the key
+                                        length.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+    </main><!-- End #main -->
+    >
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="\static\sortalgovis\assets/vendor/jquery/jquery.min.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/php-email-form/validate.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/venobox/venobox.min.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="\static\sortalgovis\assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="\static\sortalgovis\assets/js/main.js"></script>
     <script>
-        "use strict";
-        const start = async () => {
-            let algoValue = Number(document.querySelector(".algo-menu").value);
-            let speedValue = Number(document.querySelector(".speed-menu").value);
+        const $body = $("body");
+        const $header = $(".page-header");
+        const $navCollapse = $(".navbar-collapse");
+        const scrollClass = "scroll";
+        $(".card-subtitle").hide();
 
-            if (speedValue === 0) {
-                speedValue = 1;
+        $(window).on("scroll", () => {
+            // Color background of navbar a solid red on scroll
+            if (this.matchMedia("(min-width: 992px)").matches) {
+                const scrollY = $(this).scrollTop();
+                scrollY > 0
+                    ? $body.addClass(scrollClass)
+                    : $body.removeClass(scrollClass);
+            } else {
+                $body.removeClass(scrollClass);
             }
-            if (algoValue === 0) {
-                alert("No Algorithm Selected");
-                return;
-            }
+        });
 
-            let algorithm = new sortAlgorithms(speedValue);
-            if (algoValue === 1)
-                await algorithm.BubbleSort();
-            if (algoValue === 2)
-                await algorithm.SelectionSort();
-            if (algoValue === 3)
-                await algorithm.InsertionSort();
-            if (algoValue === 4)
-                await algorithm.MergeSort();
-            if (algoValue === 5)
-                await algorithm.QuickSort();
-        };
-
-        const RenderScreen = async () => {
-            let algoValue = Number(document.querySelector(".algo-menu").value);
-            await RenderList();
-        }
-
-        const RenderList = async () => {
-            let sizeValue = Number(document.querySelector(".size-menu").value);
-            await clearScreen();
-
-            let list = await randomList(sizeValue);
-            const arrayNode = document.querySelector(".array");
-            for (const element of list) {
-                const node = document.createElement("div");
-                node.className = "cell";
-                node.setAttribute("value", String(element));
-                node.style.height = `${4 * element}px`;
-                arrayNode.appendChild(node);
-            }
-        };
-
-        const RenderArray = async (sorted) => {
-            let sizeValue = Number(document.querySelector(".size-menu").value);
-            await clearScreen();
-
-            let list = await randomList(sizeValue);
-            if (sorted) list.sort((a, b) => a - b);
-
-            const arrayNode = document.querySelector('.array');
-            const divnode = document.createElement('div');
-            divnode.className = 's-array';
-
-            for (const element of list) {
-                const dnode = document.createElement('div');
-                dnode.className = 's-cell';
-                dnode.innerText = element;
-                divnode.appendChild(dnode);
-            }
-            arrayNode.appendChild(divnode);
-        }
-
-        const randomList = async (Length) => {
-            let list = new Array();
-            let lowerBound = 1;
-            let upperBound = 100;
-
-            for (let counter = 0; counter < Length; ++counter) {
-                let randomNumber = Math.floor(Math.random() * (upperBound - lowerBound + 1)
-                    + lowerBound);
-                list.push(parseInt(randomNumber));
-            }
-            return list;
-        };
-
-        const clearScreen = async () => {
-            document.querySelector(".array").innerHTML = "";
-        };
-
-        const response = () => {
-            let Navbar = document.querySelector(".navbar");
-            if (Navbar.className === "navbar") {
-                Navbar.className += " responsive";
-            }
-            else {
-                Navbar.className = "navbar";
-            }
-        };
-
-        document.querySelector(".icon").addEventListener("click", response)
-        document.querySelector(".start").addEventListener("click", start);
-        document.querySelector(".size-menu").addEventListener("change", RenderScreen);
-        document.querySelector(".algo-menu").addEventListener("change", RenderScreen);
-        window.onload = RenderScreen;
-    </script>
-
-<!-- helper.js  -->
-    <script>
-        "use strict";
-        class Helper {
-            constructor(time, list = []) {
-                this.time = parseInt(400 / time);
-                this.list = list;
-            }
-
-            mark = async (index) => {
-                this.list[index].setAttribute("class", "cell current");
-            }
-
-            markSpl = async (index) => {
-                this.list[index].setAttribute("class", "cell min");
-            }
-
-            unmark = async (index) => {
-                this.list[index].setAttribute("class", "cell");
-            }
-
-            pause = async () => {
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        resolve();
-                    }, this.time);
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            // when clicking a link in the navbar scroll smoothly to the anchor
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth",
                 });
-            }
+            });
+        });
 
-            compare = async (index1, index2) => {
-                await this.pause();
-                let value1 = Number(this.list[index1].getAttribute("value"));
-                let value2 = Number(this.list[index2].getAttribute("value"));
-                if (value1 > value2) {
-                    return true;
-                }
-                return false;
-            }
+        function showRelevant(name = "") {
+            /*************************************************************/
+            /* This function selects the algorithms fitting to the users */
+            /* search terms and displays them.                           */
+            /*                                                           */
+            /* Input: name (string) - the input of the search field      */
+            /*************************************************************/
 
-            swap = async (index1, index2) => {
-                await this.pause();
-                let value1 = this.list[index1].getAttribute("value");
-                let value2 = this.list[index2].getAttribute("value");
-                this.list[index1].setAttribute("value", value2);
-                this.list[index1].style.height = `${4 * value2}px`;
-                this.list[index2].setAttribute("value", value1);
-                this.list[index2].style.height = `${4 * value1}px`;
-            }
-        };
-    </script>
+            if (name == "") {
+                // search bar is empty -> show every algorithm and clear results <div>
+                $(".cd-hide").show();
+                $(".card-subtitle").hide();
+                $("#results").empty();
+            } else {
+                // Since I'm updating the results on every letter the user enters,
+                // it's important to clear the results <div>, so therea are no duplicates
+                // or no longer relevant algorithms displayed.
+                $("#results").empty();
+                $(".card-subtitle").show();
+                $(".cd-hide").hide();
+                let algoList = $('.algorithm[id*="' + name.toLowerCase() + '"]');
+                let deckString = '<div class="card-deck mb-4">';
+                let lastFilled = algoList.length % 4;
+                if (algoList.length != 0) {
+                    // Due to each card-deck being a different a different entity I can't
+                    // simply hide the algorithms which aren't needed, as this causes
+                    // a linebreak betwenn algorithms with different parent elements.
+                    // ------------------------------------------------------------------
+                    // A solution for this is to grab the algorithms needed and append
+                    // them all to a new <div>.
 
-<!-- sortAlgorithms.js  -->
-    <script>
-        "use strict";
-        class sortAlgorithms {
-            constructor(time) {
-                this.list = document.querySelectorAll(".cell");
-                this.size = this.list.length;
-                this.time = time;
-                this.help = new Helper(this.time, this.list);
-            }
-
-            // BUBBLE SORT
-            BubbleSort = async () => {
-                for (let i = 0; i < this.size - 1; ++i) {
-                    for (let j = 0; j < this.size - i - 1; ++j) {
-                        await this.help.mark(j);
-                        await this.help.mark(j + 1);
-                        if (await this.help.compare(j, j + 1)) {
-                            await this.help.swap(j, j + 1);
+                    // Loop over the list of elements and build the content of the new <div>
+                    for (let i = 0; i < algoList.length; i++) {
+                        // 4 algorithms on every row --> close the current card-deck after
+                        // 4 algorithms are processed and open a new one.
+                        if ((i + 1) % 4 == 0) {
+                            deckString +=
+                                algoList[i].outerHTML +
+                                '</div><div class="card-deck mb-4">';
+                        } else {
+                            deckString += algoList[i].outerHTML;
                         }
-                        await this.help.unmark(j);
-                        await this.help.unmark(j + 1);
                     }
-                    this.list[this.size - i - 1].setAttribute("class", "cell done");
-                }
-                this.list[0].setAttribute("class", "cell done");
-            }
 
-            // INSERTION SORT
-            InsertionSort = async () => {
-                for (let i = 0; i < this.size - 1; ++i) {
-                    let j = i;
-                    while (j >= 0 && await this.help.compare(j, j + 1)) {
-                        await this.help.mark(j);
-                        await this.help.mark(j + 1);
-                        await this.help.pause();
-                        await this.help.swap(j, j + 1);
-                        await this.help.unmark(j);
-                        await this.help.unmark(j + 1);
-                        j -= 1;
-                    }
-                }
-                for (let counter = 0; counter < this.size; ++counter) {
-                    this.list[counter].setAttribute("class", "cell done");
-                }
-            }
-
-            // SELECTION SORT
-            SelectionSort = async () => {
-                for (let i = 0; i < this.size; ++i) {
-                    let minIndex = i;
-                    for (let j = i; j < this.size; ++j) {
-                        await this.help.markSpl(minIndex);
-                        await this.help.mark(j);
-                        if (await this.help.compare(minIndex, j)) {
-                            await this.help.unmark(minIndex);
-                            minIndex = j;
+                    // if the last row is not completely filled,
+                    // fill it with hidden elements so the visible
+                    // cards are the right size
+                    if (lastFilled != 0) {
+                        for (let j = 0; j < 4 - lastFilled; j++) {
+                            element = algoList[0].cloneNode(true);
+                            element.style.visibility = "hidden";
+                            deckString += element.outerHTML;
                         }
-                        await this.help.unmark(j);
-                        await this.help.markSpl(minIndex);
                     }
-                    await this.help.mark(minIndex);
-                    await this.help.mark(i);
-                    await this.help.pause();
-                    await this.help.swap(minIndex, i);
-                    await this.help.unmark(minIndex);
-                    this.list[i].setAttribute("class", "cell done");
+                    // Closing the last card-deck and filling the <div> with the results
+                    // of the users search term.
+                    deckString += "</div>";
+                    $("#results").append(deckString);
+                } else {
+                    $("#results").append(`No results matching ${name}.`);
                 }
             }
+        }
 
-            // MERGE SORT
-            MergeSort = async () => {
-                await this.MergeDivider(0, this.size - 1);
-                for (let counter = 0; counter < this.size; ++counter) {
-                    this.list[counter].setAttribute("class", "cell done");
-                }
-            }
-
-            MergeDivider = async (start, end) => {
-                if (start < end) {
-                    let mid = start + Math.floor((end - start) / 2);
-                    await this.MergeDivider(start, mid);
-                    await this.MergeDivider(mid + 1, end);
-                    await this.Merge(start, mid, end);
-                }
-            }
-
-            Merge = async (start, mid, end) => {
-                let newList = new Array();
-                let frontcounter = start;
-                let midcounter = mid + 1;
-
-                while (frontcounter <= mid && midcounter <= end) {
-                    let fvalue = Number(this.list[frontcounter].getAttribute("value"));
-                    let svalue = Number(this.list[midcounter].getAttribute("value"));
-                    if (fvalue >= svalue) {
-                        newList.push(svalue);
-                        ++midcounter;
-                    }
-                    else {
-                        newList.push(fvalue);
-                        ++frontcounter;
-                    }
-                }
-                while (frontcounter <= mid) {
-                    newList.push(Number(this.list[frontcounter].getAttribute("value")));
-                    ++frontcounter;
-                }
-                while (midcounter <= end) {
-                    newList.push(Number(this.list[midcounter].getAttribute("value")));
-                    ++midcounter;
-                }
-
-                for (let c = start; c <= end; ++c) {
-                    this.list[c].setAttribute("class", "cell current");
-                }
-                for (let c = start, point = 0; c <= end && point < newList.length;
-                    ++c, ++point) {
-                    await this.help.pause();
-                    this.list[c].setAttribute("value", newList[point]);
-                    this.list[c].style.height = `${3.5 * newList[point]}px`;
-                }
-                for (let c = start; c <= end; ++c) {
-                    this.list[c].setAttribute("class", "cell");
-                }
-            }
-
-            // QUICK SORT
-            QuickSort = async () => {
-                await this.QuickDivider(0, this.size - 1);
-                for (let c = 0; c < this.size; ++c) {
-                    this.list[c].setAttribute("class", "cell done");
-                }
-            }
-
-            QuickDivider = async (start, end) => {
-                if (start < end) {
-                    let pivot = await this.Partition(start, end);
-                    await this.QuickDivider(start, pivot - 1);
-                    await this.QuickDivider(pivot + 1, end);
-                }
-            }
-
-            Partition = async (start, end) => {
-                let pivot = this.list[end].getAttribute("value");
-                let prev_index = start - 1;
-
-                await this.help.markSpl(end);
-                for (let c = start; c < end; ++c) {
-                    let currValue = Number(this.list[c].getAttribute("value"));
-                    await this.help.mark(c);
-                    if (currValue < pivot) {
-                        prev_index += 1;
-                        await this.help.mark(prev_index);
-                        await this.help.swap(c, prev_index);
-                        await this.help.unmark(prev_index);
-                    }
-                    await this.help.unmark(c);
-                }
-                await this.help.swap(prev_index + 1, end);
-                await this.help.unmark(end);
-                return prev_index + 1;
-            }
-        };
+        $("#search").on("input", function (e) {
+            showRelevant(this.value);
+        });
     </script>
 </body>
 

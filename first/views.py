@@ -44,7 +44,7 @@ def handlelogin(request):
         user = authenticate(username=loginusername , password=loginpass)
         if user is not None :
             login(request, user)
-            messages.success(request, "successfully loged in")
+            messages.success(request, "successfully logged in")
             return redirect('about')
             
         else :
@@ -57,7 +57,7 @@ def handlelogin(request):
 
 def handlelogout(request):
     logout(request)
-    messages.success(request, "logout")
+    messages.success(request, "loggout successfully")
     return redirect('home')
 
 def contact(request):
@@ -83,4 +83,9 @@ def visualizer(request):
 
 def quize(request):
     return render(request, 'quize.html')
+
+def queue(request):
+    return render(request, 'queue.html')
     
+def stack(request):
+    return render(request, 'stack.html')
